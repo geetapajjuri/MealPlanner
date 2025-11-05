@@ -1,0 +1,627 @@
+/**
+ * Geeta's AI Meal Planner - Styles
+ * Modern, clean, and responsive design
+ */
+
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
+:root {
+  /* Colors */
+  --primary-color: #4f46e5;
+  --primary-dark: #4338ca;
+  --primary-light: #818cf8;
+  --secondary-color: #10b981;
+  --secondary-dark: #059669;
+  --accent-color: #f59e0b;
+  
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-light: #9ca3af;
+  
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  
+  --border-color: #e5e7eb;
+  --error-color: #ef4444;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+}
+
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: var(--spacing-lg);
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+  text-align: center;
+  padding: var(--spacing-2xl) var(--spacing-xl);
+}
+
+.title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: -0.025em;
+}
+
+.tagline {
+  font-size: var(--font-size-lg);
+  opacity: 0.95;
+  font-weight: 300;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+.main-content {
+  padding: var(--spacing-2xl) var(--spacing-xl);
+}
+
+/* ============================================
+   FORM STYLES
+   ============================================ */
+.form-section {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.meal-plan-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  display: block;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+  margin-bottom: var(--spacing-sm);
+}
+
+.required {
+  color: var(--error-color);
+  font-weight: 700;
+}
+
+.help-text {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+}
+
+/* Form Inputs */
+.form-select,
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: var(--font-family);
+  transition: all var(--transition-base);
+  background-color: var(--bg-primary);
+}
+
+.form-select:focus,
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.form-select:hover,
+.form-input:hover,
+.form-textarea:hover {
+  border-color: var(--text-secondary);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.character-count {
+  text-align: right;
+  display: block;
+  margin-top: var(--spacing-xs);
+}
+
+/* Checkboxes and Radio Buttons */
+.checkbox-group,
+.radio-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+}
+
+.checkbox-label,
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background-color: var(--bg-primary);
+  font-weight: 500;
+}
+
+.checkbox-label:hover,
+.radio-label:hover {
+  border-color: var(--primary-light);
+  background-color: var(--bg-secondary);
+}
+
+.checkbox-input:checked + span,
+.radio-input:checked + span {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.checkbox-label:has(.checkbox-input:checked),
+.radio-label:has(.radio-input:checked) {
+  border-color: var(--primary-color);
+  background-color: rgba(79, 70, 229, 0.05);
+}
+
+.checkbox-input,
+.radio-input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  text-decoration: none;
+  font-family: var(--font-family);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+  box-shadow: var(--shadow-md);
+  width: 100%;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-outline {
+  background: white;
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: var(--bg-secondary);
+  border-color: var(--text-secondary);
+}
+
+/* ============================================
+   ERROR HANDLING
+   ============================================ */
+.error-container {
+  background-color: #fee2e2;
+  border: 2px solid var(--error-color);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  color: #991b1b;
+  animation: slideDown 0.3s ease-out;
+}
+
+.error-message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.error-message:last-child {
+  margin-bottom: 0;
+}
+
+.error-icon {
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+/* ============================================
+   RESULTS SECTION
+   ============================================ */
+.results-section {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.success-header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  padding-bottom: var(--spacing-xl);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.results-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.results-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+}
+
+/* Meal Plan Container */
+.meal-plan-container {
+  display: grid;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* Meal Card */
+.meal-card {
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-base);
+  animation: slideUp 0.4s ease-out backwards;
+}
+
+.meal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+
+.meal-card:nth-child(1) { animation-delay: 0.1s; }
+.meal-card:nth-child(2) { animation-delay: 0.15s; }
+.meal-card:nth-child(3) { animation-delay: 0.2s; }
+.meal-card:nth-child(4) { animation-delay: 0.25s; }
+.meal-card:nth-child(5) { animation-delay: 0.3s; }
+.meal-card:nth-child(6) { animation-delay: 0.35s; }
+.meal-card:nth-child(7) { animation-delay: 0.4s; }
+
+.meal-day {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.meal-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.meal-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
+.meal-badges {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.badge-time {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.badge-cuisine {
+  background-color: #fce7f3;
+  color: #9f1239;
+}
+
+/* Results Actions */
+.results-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.slack-status {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-weight: 600;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.slack-status.success {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 2px solid var(--success-color);
+}
+
+.slack-status.error {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 2px solid var(--error-color);
+}
+
+/* ============================================
+   LOADING OVERLAY
+   ============================================ */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  color: white;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-top: var(--spacing-lg);
+  text-align: center;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background-color: var(--bg-secondary);
+  padding: var(--spacing-xl);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  border-top: 1px solid var(--border-color);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+  body {
+    padding: var(--spacing-sm);
+  }
+  
+  .container {
+    border-radius: var(--radius-lg);
+  }
+  
+  .header {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+  
+  .title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .tagline {
+    font-size: var(--font-size-base);
+  }
+  
+  .main-content {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+  
+  .checkbox-group,
+  .radio-group {
+    grid-template-columns: 1fr;
+  }
+  
+  .results-actions {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .meal-title {
+    font-size: var(--font-size-lg);
+  }
+}

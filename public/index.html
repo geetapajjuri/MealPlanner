@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered weekly meal planning in minutes">
+    <title>Geeta's AI Meal Planner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">🍽️ Geeta's AI Meal Planner</h1>
+            <p class="tagline">AI-powered weekly meal planning in minutes</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Meal Planning Form Section -->
+            <section id="formSection" class="form-section">
+                <form id="mealPlanForm" class="meal-plan-form" novalidate>
+                    <!-- Family Size -->
+                    <div class="form-group">
+                        <label for="familySize" class="form-label">
+                            Family Size <span class="required">*</span>
+                        </label>
+                        <select id="familySize" name="familySize" class="form-select" required>
+                            <option value="">Select family size</option>
+                            <option value="1">1 person</option>
+                            <option value="2">2 people</option>
+                            <option value="3">3 people</option>
+                            <option value="4">4 people</option>
+                            <option value="5">5 people</option>
+                            <option value="6">6 people</option>
+                            <option value="7">7 people</option>
+                            <option value="8">8 people</option>
+                        </select>
+                    </div>
+
+                    <!-- Dietary Restrictions -->
+                    <fieldset class="form-group">
+                        <legend class="form-label">
+                            Dietary Restrictions <span class="required">*</span>
+                            <span class="help-text">(Select at least one)</span>
+                        </legend>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="dietaryRestrictions" value="Vegetarian" class="checkbox-input">
+                                <span>Vegetarian</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="dietaryRestrictions" value="Vegan" class="checkbox-input">
+                                <span>Vegan</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="dietaryRestrictions" value="Gluten-free" class="checkbox-input">
+                                <span>Gluten-free</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="dietaryRestrictions" value="Dairy-free" class="checkbox-input">
+                                <span>Dairy-free</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="dietaryRestrictions" value="Nut allergies" class="checkbox-input">
+                                <span>Nut allergies</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="dietaryRestrictions" value="Keto" class="checkbox-input">
+                                <span>Keto</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="dietaryRestrictions" value="Paleo" class="checkbox-input">
+                                <span>Paleo</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="dietaryRestrictions" value="None" class="checkbox-input">
+                                <span>None</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Cooking Time -->
+                    <fieldset class="form-group">
+                        <legend class="form-label">
+                            Preferred Cooking Time <span class="required">*</span>
+                        </legend>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="cookingTime" value="15 minutes" class="radio-input" required>
+                                <span>15 minutes</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="cookingTime" value="30 minutes" class="radio-input" required>
+                                <span>30 minutes</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="cookingTime" value="45 minutes" class="radio-input" required>
+                                <span>45 minutes</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="cookingTime" value="1+ hour" class="radio-input" required>
+                                <span>1+ hour</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Cuisine Preferences -->
+                    <fieldset class="form-group">
+                        <legend class="form-label">
+                            Cuisine Preferences <span class="required">*</span>
+                            <span class="help-text">(Select at least one)</span>
+                        </legend>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="cuisinePreferences" value="Italian" class="checkbox-input">
+                                <span>Italian</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="cuisinePreferences" value="Mexican" class="checkbox-input">
+                                <span>Mexican</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="cuisinePreferences" value="Asian" class="checkbox-input">
+                                <span>Asian</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="cuisinePreferences" value="American" class="checkbox-input">
+                                <span>American</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="cuisinePreferences" value="Mediterranean" class="checkbox-input">
+                                <span>Mediterranean</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="cuisinePreferences" value="Indian" class="checkbox-input">
+                                <span>Indian</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Disliked Ingredients -->
+                    <div class="form-group">
+                        <label for="dislikedIngredients" class="form-label">
+                            Disliked Ingredients (Optional)
+                        </label>
+                        <input 
+                            type="text" 
+                            id="dislikedIngredients" 
+                            name="dislikedIngredients" 
+                            class="form-input"
+                            placeholder="e.g., mushrooms, olives, cilantro"
+                            maxlength="200"
+                        >
+                        <small class="help-text">Separate multiple ingredients with commas</small>
+                    </div>
+
+                    <!-- Additional Notes -->
+                    <div class="form-group">
+                        <label for="additionalNotes" class="form-label">
+                            Additional Notes (Optional)
+                        </label>
+                        <textarea 
+                            id="additionalNotes" 
+                            name="additionalNotes" 
+                            class="form-textarea"
+                            placeholder="e.g., Kid-friendly meals, low-carb, budget-friendly..."
+                            maxlength="500"
+                            rows="4"
+                        ></textarea>
+                        <small class="help-text character-count">
+                            <span id="charCount">0</span>/500 characters
+                        </small>
+                    </div>
+
+                    <!-- Error Display -->
+                    <div id="errorContainer" class="error-container" style="display: none;"></div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submitBtn" class="btn btn-primary">
+                        Generate My Meal Plan
+                    </button>
+                </form>
+            </section>
+
+            <!-- Results Section (Initially Hidden) -->
+            <section id="resultsSection" class="results-section" style="display: none;">
+                <div class="success-header">
+                    <h2 class="results-title">✨ Your Weekly Meal Plan is Ready!</h2>
+                    <p class="results-subtitle">Here are your personalized meal suggestions for the week</p>
+                </div>
+
+                <div id="mealPlanContainer" class="meal-plan-container">
+                    <!-- Meal cards will be dynamically inserted here -->
+                </div>
+
+                <div class="results-actions">
+                    <button id="sendToSlackBtn" class="btn btn-secondary">
+                        📤 Send to Slack
+                    </button>
+                    <button id="generateNewBtn" class="btn btn-outline">
+                        🔄 Generate New Plan
+                    </button>
+                </div>
+
+                <div id="slackStatus" class="slack-status" style="display: none;"></div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 Geeta's AI Meal Planner. Powered by OpenAI.</p>
+        </footer>
+    </div>
+
+    <!-- Loading Spinner Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+        <p class="loading-text">Generating your personalized meal plan...</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
