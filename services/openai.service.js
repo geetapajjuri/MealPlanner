@@ -5,20 +5,24 @@
 
 require('dotenv').config();
 const OpenAI = require('openai');
+const { generateFreeMealPlan } = require('./freeMealPlan.service');
 
 // ============================================
 // CONFIGURATION
 // ============================================
 
-// Validate API key
+// Validate API key (warn but don't throw - check at runtime instead)
 if (!process.env.OPENAI_API_KEY) {
-  throw new Error('OPENAI_API_KEY is required in environment variables');
+  console.warn('⚠️ OPENAI_API_KEY not configured. Meal plan generation will fail until configured.');
 }
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// Initialize OpenAI client (will be null if key not provided)
+let openai = null;
+if (process.env.OPENAI_API_KEY) {
+  openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+}
 
 // Configuration constants
 const MODEL = 'gpt-4';
@@ -75,23 +79,35 @@ async function generateMealPlan(userPreferences) {
   // Validate preferences
   validatePreferences(userPreferences);
 
-  // Build user prompt
-  const userPrompt = buildUserPrompt(userPreferences);
-  
-  console.log('📝 User prompt prepared, calling OpenAI API...');
+  // Check if OpenAI is available
+  if (!openai) {
+    console.log('⚠️ OpenAI not configured, using free meal plan service');
+    return generateFreeMealPlan(userPreferences);
+  }
 
-  // Make API call with retry logic
-  const mealPlan = await retryWithBackoff(
-    () => callOpenAI(userPrompt),
-    MAX_RETRIES
-  );
+  // Try OpenAI first, fallback to free meal plan on error
+  try {
+    // Build user prompt
+    const userPrompt = buildUserPrompt(userPreferences);
+    
+    console.log('📝 User prompt prepared, calling OpenAI API...');
 
-  // Validate response
-  validateMealPlan(mealPlan);
+    // Make API call with retry logic
+    const mealPlan = await retryWithBackoff(
+      () => callOpenAI(userPrompt),
+      MAX_RETRIES
+    );
 
-  console.log('✅ Meal plan generated successfully:', mealPlan.meals.length, 'meals');
-  
-  return mealPlan;
+    // Validate response
+    validateMealPlan(mealPlan);
+
+    console.log('✅ Meal plan generated successfully:', mealPlan.meals.length, 'meals');
+    
+    return mealPlan;
+  } catch (error) {
+    console.warn('⚠️ OpenAI failed, falling back to free meal plan:', error.message);
+    return generateFreeMealPlan(userPreferences);
+  }
 }
 
 /**
@@ -100,6 +116,11 @@ async function generateMealPlan(userPreferences) {
  * @returns {Promise<Object>} Parsed meal plan object
  */
 async function callOpenAI(userPrompt) {
+  // Check if OpenAI is configured
+  if (!openai) {
+    throw new Error('OpenAI API key is not configured. Please add OPENAI_API_KEY to your environment variables.');
+  }
+
   try {
     const completion = await openai.chat.completions.create({
       model: MODEL,
