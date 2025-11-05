@@ -69,10 +69,11 @@ app.get('/health', (req, res) => {
   });
 });
 
-// API routes will be mounted here
-// Example: app.use('/api', apiRoutes);
+// Mount API routes
+const mealPlanRoutes = require('./routes/mealPlan.routes');
+app.use('/api', mealPlanRoutes);
 
-// Catch-all route - Serve index.html for any unmatched routes
+// Catch-all route - Serve index.html for any unmatched routes (must be last)
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
