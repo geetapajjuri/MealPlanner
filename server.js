@@ -74,7 +74,7 @@ const mealPlanRoutes = require('./routes/mealPlan.routes');
 app.use('/api', mealPlanRoutes);
 
 // Catch-all route - Serve index.html for any unmatched routes (must be last)
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
