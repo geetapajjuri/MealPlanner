@@ -102,13 +102,15 @@ app.use((err, req, res, next) => {
 // SERVER STARTUP
 // ============================================
 
-const server = app.listen(PORT, () => {
+const HOST = process.env.HOST || '0.0.0.0'; // Bind to all interfaces for Replit
+
+const server = app.listen(PORT, HOST, () => {
   console.log('='.repeat(50));
   console.log(`🍽️  Geeta's AI Meal Planner Server`);
   console.log('='.repeat(50));
   console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`Server running on: http://localhost:${PORT}`);
-  console.log(`Health check: http://localhost:${PORT}/health`);
+  console.log(`Server running on: http://${HOST}:${PORT}`);
+  console.log(`Health check: http://${HOST}:${PORT}/health`);
   console.log('='.repeat(50));
 });
 
