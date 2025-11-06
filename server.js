@@ -55,6 +55,12 @@ app.use(limiter);
 // 5. Static files - Serve frontend from public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Log all requests for debugging
+app.use((req, res, next) => {
+  console.log(`📨 ${req.method} ${req.url}`);
+  next();
+});
+
 // ============================================
 // ROUTES
 // ============================================
@@ -72,6 +78,11 @@ app.get('/health', (req, res) => {
 // Mount API routes
 const mealPlanRoutes = require('./routes/mealPlan.routes');
 app.use('/api', mealPlanRoutes);
+
+// Serve index.html for root path
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // Catch-all route - Serve index.html for any unmatched routes (must be last)
 app.get('/*', (req, res) => {
